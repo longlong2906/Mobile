@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Số câu hỏi -->
+        <TextView
+            android:id="@+id/tvQuestionNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Câu 1"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- Nội dung câu hỏi -->
+        <TextView
+            android:id="@+id/tvQuestionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nội dung câu hỏi"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Nhóm Holland -->
+        <TextView
+            android:id="@+id/tvHollandType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thực tế"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:background="@color/teal_200"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_gravity="end"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

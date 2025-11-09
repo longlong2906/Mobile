@@ -1,0 +1,96 @@
+<resources>
+    <string name="app_name">Tư Vấn Hướng Nghiệp</string>
+    
+    <!-- Common -->
+    <string name="email">Email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="confirm_password">Xác nhận mật khẩu</string>
+    <string name="full_name">Họ và Tên</string>
+    <string name="back">Quay lại</string>
+    <string name="or">HOẶC</string>
+    <string name="app_logo">Logo ứng dụng</string>
+    
+    <!-- Login Activity -->
+    <string name="welcome_back">Chào mừng trở lại!</string>
+    <string name="login_subtitle">Đăng nhập để tiếp tục</string>
+    <string name="login">Đăng nhập</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="sign_in_with_google">Đăng nhập bằng Google</string>
+    <string name="dont_have_account">Chưa có tài khoản?</string>
+    <string name="sign_up">Đăng ký</string>
+    
+    <!-- Register Activity -->
+    <string name="create_account">Tạo tài khoản</string>
+    <string name="register_subtitle">Đăng ký để bắt đầu hành trình của bạn</string>
+    <string name="already_have_account">Đã có tài khoản?</string>
+    
+    <!-- Forgot Password Activity -->
+    <string name="forgot_password_title">Quên mật khẩu?</string>
+    <string name="forgot_password_description">Nhập email của bạn và chúng tôi sẽ gửi link đặt lại mật khẩu</string>
+    <string name="forgot_password_illustration">Quên mật khẩu</string>
+    <string name="send_reset_link">Gửi link đặt lại</string>
+    <string name="remember_password">Đã nhớ mật khẩu?</string>
+    
+    <!-- Validation Messages -->
+    <string name="error_empty_email">Vui lòng nhập email</string>
+    <string name="error_invalid_email">Email không hợp lệ</string>
+    <string name="error_empty_password">Vui lòng nhập mật khẩu</string>
+    <string name="error_password_too_short">Mật khẩu phải có ít nhất 6 ký tự</string>
+    <string name="error_password_mismatch">Mật khẩu không khớp</string>
+    <string name="error_empty_full_name">Vui lòng nhập họ và tên</string>
+    
+    <!-- Success Messages -->
+    <string name="success_registration">Đăng ký thành công! Vui lòng kiểm tra email để xác nhận.</string>
+    <string name="success_password_reset">Đã gửi link đặt lại mật khẩu. Vui lòng kiểm tra email.</string>
+    <string name="success_login">Đăng nhập thành công!</string>
+    
+    <!-- Error Messages -->
+    <string name="error_registration_failed">Đăng ký thất bại. Vui lòng thử lại.</string>
+    <string name="error_login_failed">Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.</string>
+    <string name="error_password_reset_failed">Không thể gửi email. Vui lòng kiểm tra địa chỉ email.</string>
+    <string name="error_google_sign_in_failed">Đăng nhập bằng Google thất bại</string>
+    
+    <!-- Info Messages -->
+    <string name="info_google_sign_in_cancelled">Đã hủy đăng nhập Google</string>
+    <string name="info_press_back_to_cancel">Nhấn nút Quay lại để hủy</string>
+    
+    <!-- Google Sign-In - This will be auto-generated from google-services.json -->
+    <!-- For now, using placeholder. Replace with actual value from Firebase Console -->
+    <string name="default_web_client_id" translatable="false">869596895687-6a53e8f00ti8g8dvdnkolltbsgk568bh.apps.googleusercontent.com</string>
+    
+    <!-- Bottom Navigation -->
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_quiz">Trắc nghiệm</string>
+    <string name="nav_majors">Ngành nghề</string>
+    <string name="nav_schools">Trường học</string>
+    <string name="nav_profile">Cá nhân</string>
+    
+    <!-- Home Fragment -->
+    <string name="home_welcome">Xin chào, %s!</string>
+    <string name="home_subtitle">Khám phá hướng nghiệp phù hợp với bạn</string>
+    <string name="home_start_quiz">Làm bài test Holland</string>
+    <string name="home_explore_majors">Khám phá ngành nghề</string>
+    <string name="home_explore_schools">Tìm trường học</string>
+    
+    <!-- Profile Fragment -->
+    <string name="profile_title">Thông tin cá nhân</string>
+    <string name="profile_logout">Đăng xuất</string>
+    <string name="profile_test_result">Kết quả test của bạn</string>
+    <string name="profile_no_test">Bạn chưa làm bài test</string>
+    <string name="profile_logout_confirm">Bạn có chắc muốn đăng xuất?</string>
+    <string name="cancel">Hủy</string>
+    <string name="logout">Đăng xuất</string>
+    
+    <!-- Quiz Fragment -->
+    <string name="quiz_title">Trắc nghiệm hướng nghiệp</string>
+    <string name="quiz_description">Dựa trên mô hình Holland để tìm ra nhóm nghề phù hợp</string>
+    <string name="quiz_start">Bắt đầu làm bài</string>
+    
+    <!-- Majors Fragment -->
+    <string name="majors_title">Danh sách ngành nghề</string>
+    <string name="majors_search_hint">Tìm kiếm ngành nghề...</string>
+    
+    <!-- Schools Fragment -->
+    <string name="schools_title">Danh sách trường học</string>
+    <string name="schools_search_hint">Tìm kiếm trường học...</string>
+</resources>

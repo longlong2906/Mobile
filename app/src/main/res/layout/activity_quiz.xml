@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="#E3F2FD"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/back" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Trắc nghiệm Holland"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center" />
+
+            <View
+                android:layout_width="48dp"
+                android:layout_height="48dp" />
+        </LinearLayout>
+
+        <!-- Progress -->
+        <TextView
+            android:id="@+id/tvProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Câu 1/30"
+            android:textSize="14sp"
+            android:textColor="#666666" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="8dp"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:max="30"
+            android:progress="1" />
+    </LinearLayout>
+
+    <!-- ViewPager2 for Questions -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
+        app:layout_constraintBottom_toTopOf="@id/navigationLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Navigation Buttons -->
+    <LinearLayout
+        android:id="@+id/navigationLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPrevious"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="Trước"
+            android:textSize="16sp"
+            app:cornerRadius="12dp"
+            style="@style/Widget.Material3.Button.OutlinedButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Tiếp"
+            android:textSize="16sp"
+            app:cornerRadius="12dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

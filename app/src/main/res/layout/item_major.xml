@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardMajor"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Major Name -->
+        <TextView
+            android:id="@+id/tvMajorName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Công nghệ thông tin"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <!-- Category Chip -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Công nghệ"
+            android:textSize="12sp"
+            app:chipBackgroundColor="#E3F2FD"
+            app:chipStrokeWidth="0dp"
+            style="@style/Widget.Material3.Chip.Assist" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Ngành học về phát triển và quản lý hệ thống thông tin..."
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:maxLines="2"
+            android:ellipsize="end" />
+
+        <!-- Salary and Demand -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="💰 Mức lương:"
+                android:textSize="12sp"
+                android:textColor="#999999" />
+
+            <TextView
+                android:id="@+id/tvSalary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="12-40tr"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="📊 Nhu cầu:"
+                android:textSize="12sp"
+                android:textColor="#999999" />
+
+            <TextView
+                android:id="@+id/tvDemand"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Rất cao"
+                android:textSize="12sp"
+                android:textColor="#4CAF50"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
+

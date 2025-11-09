@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardMajor"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="#FFF3E0"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="🎓"
+            android:textSize="28sp"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvMajorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Công nghệ thông tin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Công nghệ"
+                android:textSize="12sp"
+                android:textColor="#666666" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="→"
+            android:textSize="24sp"
+            android:textColor="#666666" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
+

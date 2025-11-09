@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Admission Policy Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📋 Quy chế tuyển sinh"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvAdmissionPolicy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Quy chế tuyển sinh..."
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:lineSpacingExtra="4dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Admission Quota Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="#E3F2FD">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📊 Chỉ tiêu tuyển sinh"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvAdmissionQuota"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="5,500 chỉ tiêu"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#1976D2" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Admission Methods Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🎯 Phương thức tuyển sinh"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvAdmissionMethods"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="• Xét điểm thi THPT\n• Xét học bạ\n• Tuyển thẳng"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:lineSpacingExtra="4dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Benchmark Scores Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📈 Điểm chuẩn (Năm gần nhất)"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvBenchmarkScores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:nestedScrollingEnabled="false" />
+
+                <TextView
+                    android:id="@+id/tvNoBenchmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Chưa có thông tin điểm chuẩn"
+                    android:textSize="13sp"
+                    android:textColor="#999999"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</ScrollView>

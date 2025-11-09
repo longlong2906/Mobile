@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardMajor"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🎓"
+            android:textSize="32sp"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/tvMajorName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Công nghệ thông tin"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:maxLines="2"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Công nghệ"
+            android:textSize="11sp"
+            android:textColor="#666666"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
+

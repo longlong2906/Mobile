@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "869596895687",
+    "project_id": "careerguide-50849",
+    "storage_bucket": "careerguide-50849.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869596895687:android:fa27b9e545f3f6fdd961e2",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869596895687-nllho12e3s6p855oan9mlp712vt6jpi2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "dbba2c86d035fa54a0fa30e81ae844834aeb4540"
+          }
+        },
+        {
+          "client_id": "869596895687-6a53e8f00ti8g8dvdnkolltbsgk568bh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs-s9I0MegptP7qwywd9mtf9qQl1fvDfo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869596895687-6a53e8f00ti8g8dvdnkolltbsgk568bh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+
