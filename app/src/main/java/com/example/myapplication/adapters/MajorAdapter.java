@@ -67,6 +67,12 @@ public class MajorAdapter extends RecyclerView.Adapter<MajorAdapter.ViewHolder> 
         return majorsFiltered.size();
     }
 
+    public void updateData(List<Major> newMajors) {
+        this.majors = newMajors;
+        this.majorsFiltered = new ArrayList<>(newMajors);
+        notifyDataSetChanged();
+    }
+
     public void filter(String query, String category) {
         majorsFiltered.clear();
 

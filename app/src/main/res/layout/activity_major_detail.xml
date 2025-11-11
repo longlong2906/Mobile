@@ -4,43 +4,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@color/white">
+    android:background="#F5F5F5">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Header with back button -->
+        <!-- Header with gradient background -->
         <LinearLayout
             android:id="@+id/headerLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            android:gravity="center_vertical"
-            android:background="#E3F2FD"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:background="@drawable/gradient_profile_header"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
             <ImageButton
                 android:id="@+id/btnBack"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@android:drawable/ic_menu_revert"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="#FFFFFF"
                 android:contentDescription="@string/back" />
 
             <TextView
                 android:id="@+id/tvMajorName"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Công nghệ thông tin"
-                android:textSize="20sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:textColor="#FFFFFF" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Công nghệ"
+                android:textColor="#667eea"
+                android:textStyle="bold"
+                app:chipBackgroundColor="#FFFFFF"
+                app:chipStrokeWidth="0dp"
+                style="@style/Widget.Material3.Chip.Assist" />
         </LinearLayout>
 
         <!-- Content -->
@@ -48,103 +59,279 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp"
+            android:padding="16dp"
             app:layout_constraintTop_toBottomOf="@id/headerLayout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-            <!-- Category -->
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Công nghệ"
-                app:chipBackgroundColor="#E3F2FD"
-                app:chipStrokeWidth="0dp"
-                style="@style/Widget.Material3.Chip.Assist" />
-
-            <!-- Description -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Mô tả"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/tvDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="..."
-                android:textSize="14sp"
-                android:textColor="#666666"
-                android:lineSpacingExtra="4dp" />
-
-            <!-- Career Path -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Lộ trình sự nghiệp"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/tvCareerPath"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="..."
-                android:textSize="14sp"
-                android:textColor="#666666"
-                android:lineSpacingExtra="4dp" />
-
-            <!-- Required Skills -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Kỹ năng cần thiết"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/tvSkills"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="..."
-                android:textSize="14sp"
-                android:textColor="#666666"
-                android:lineSpacingExtra="4dp" />
-
-            <!-- Salary Info -->
+            <!-- Mô tả công việc -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginBottom="12dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp"
-                    android:background="#FFF3E0">
+                    android:padding="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="💰 Mức lương"
+                        android:text="📝 Mô tả công việc"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:textColor="@color/black" />
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:id="@+id/tvDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="..."
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Yêu cầu trình độ học vấn -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🎓 Yêu cầu trình độ học vấn"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:id="@+id/tvEducationRequirement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="..."
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Kỹ năng chuyên môn -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💻 Kỹ năng chuyên môn"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:id="@+id/tvTechnicalSkills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="..."
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Kỹ năng mềm -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🤝 Kỹ năng mềm phù hợp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:id="@+id/tvSoftSkills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="..."
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Đối tượng phù hợp -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#E8F5E9">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="👤 Đối tượng phù hợp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:id="@+id/tvSuitableFor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="..."
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Lộ trình phát triển nghề nghiệp -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📈 Lộ trình phát triển nghề nghiệp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:id="@+id/tvCareerPath"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="..."
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Môi trường làm việc -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🏢 Môi trường làm việc"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:id="@+id/tvWorkEnvironments"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="..."
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Mức lương -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFF3E0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💰 Mức lương trung bình"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#424242" />
 
                     <TextView
                         android:id="@+id/tvSalary"
@@ -153,67 +340,117 @@
                         android:layout_marginTop="8dp"
                         android:text="..."
                         android:textSize="14sp"
-                        android:textColor="#666666" />
+                        android:textColor="#666666"
+                        android:lineSpacingExtra="4dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Market Demand -->
+            <!-- Cơ hội việc làm -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="12dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#E3F2FD">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp"
-                    android:background="#E8F5E9">
+                    android:padding="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="📊 Thị trường lao động"
+                        android:text="📊 Cơ hội việc làm"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:textColor="@color/black" />
+                        android:textColor="#424242" />
 
                     <TextView
-                        android:id="@+id/tvMarketDemand"
+                        android:id="@+id/tvJobOpportunities"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="..."
                         android:textSize="14sp"
-                        android:textColor="#666666" />
+                        android:textColor="#666666"
+                        android:lineSpacingExtra="4dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Schools -->
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- Thách thức -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Trường đào tạo"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFEBEE">
 
-            <TextView
-                android:id="@+id/tvSchools"
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⚠️ Thách thức nghề nghiệp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:id="@+id/tvChallenges"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="..."
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Trường đào tạo -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp"
-                android:text="..."
-                android:textSize="14sp"
-                android:textColor="#666666"
-                android:lineSpacingExtra="4dp" />
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🏫 Trường đào tạo hàng đầu"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:id="@+id/tvSchools"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="..."
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
-

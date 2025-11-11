@@ -6,15 +6,36 @@ import java.util.List;
 public class Major implements Serializable {
     private String id;
     private String name;
-    private String category;
-    private String description;
+    private String category;  // Mảng/Lĩnh vực liên quan
+    private String description;  // Mô tả công việc
     private String imageUrl;
-    private List<String> careerPath;
-    private List<String> requiredSkills;
-    private String salaryRange;
-    private String marketDemand;
-    private List<String> schools;
+    
+    // Yêu cầu
+    private String educationRequirement;  // Yêu cầu trình độ học vấn
+    private List<String> technicalSkills;  // Kỹ năng chuyên môn
+    private List<String> softSkills;  // Kỹ năng mềm phù hợp
+    private String suitableFor;  // Đối tượng phù hợp
+    
+    // Phát triển nghề nghiệp
+    private List<String> careerPath;  // Lộ trình phát triển nghề nghiệp
+    private List<String> workEnvironments;  // Các môi trường làm việc
+    
+    // Thu nhập và cơ hội
+    private String salaryRange;  // Mức lương trung bình
+    private String jobOpportunities;  // Cơ hội việc làm hiện tại và tiềm năng tương lai
+    
+    // Thách thức
+    private List<String> challenges;  // Những khó khăn, thách thức thường gặp
+    
+    // Đào tạo
+    private List<String> schools;  // Các trường đại học đào tạo hàng đầu
+    
+    // Holland Test
     private String hollandType; // Holland type code (R, I, A, S, E, C)
+    
+    // Legacy field for backward compatibility
+    private List<String> requiredSkills;
+    private String marketDemand;
 
     // Constructor mặc định cho Firestore
     public Major() {
@@ -114,6 +135,62 @@ public class Major implements Serializable {
 
     public void setHollandType(String hollandType) {
         this.hollandType = hollandType;
+    }
+
+    public String getEducationRequirement() {
+        return educationRequirement;
+    }
+
+    public void setEducationRequirement(String educationRequirement) {
+        this.educationRequirement = educationRequirement;
+    }
+
+    public List<String> getTechnicalSkills() {
+        return technicalSkills;
+    }
+
+    public void setTechnicalSkills(List<String> technicalSkills) {
+        this.technicalSkills = technicalSkills;
+    }
+
+    public List<String> getSoftSkills() {
+        return softSkills;
+    }
+
+    public void setSoftSkills(List<String> softSkills) {
+        this.softSkills = softSkills;
+    }
+
+    public String getSuitableFor() {
+        return suitableFor;
+    }
+
+    public void setSuitableFor(String suitableFor) {
+        this.suitableFor = suitableFor;
+    }
+
+    public List<String> getWorkEnvironments() {
+        return workEnvironments;
+    }
+
+    public void setWorkEnvironments(List<String> workEnvironments) {
+        this.workEnvironments = workEnvironments;
+    }
+
+    public String getJobOpportunities() {
+        return jobOpportunities;
+    }
+
+    public void setJobOpportunities(String jobOpportunities) {
+        this.jobOpportunities = jobOpportunities;
+    }
+
+    public List<String> getChallenges() {
+        return challenges;
+    }
+
+    public void setChallenges(List<String> challenges) {
+        this.challenges = challenges;
     }
 }
 

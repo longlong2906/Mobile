@@ -67,10 +67,10 @@
     
     <!-- Home Fragment -->
     <string name="home_welcome">Xin chào, %s!</string>
-    <string name="home_subtitle">Khám phá hướng nghiệp phù hợp với bạn</string>
-    <string name="home_start_quiz">Làm bài test Holland</string>
+    <string name="home_subtitle">Khám phá nghề nghiệp phù hợp với bạn</string>
+    <string name="home_start_quiz">Làm bài test</string>
     <string name="home_explore_majors">Khám phá ngành nghề</string>
-    <string name="home_explore_schools">Tìm trường học</string>
+    <string name="home_explore_schools">Tìm kiếm trường đại học</string>
     
     <!-- Profile Fragment -->
     <string name="profile_title">Thông tin cá nhân</string>
@@ -83,14 +83,14 @@
     
     <!-- Quiz Fragment -->
     <string name="quiz_title">Trắc nghiệm hướng nghiệp</string>
-    <string name="quiz_description">Dựa trên mô hình Holland để tìm ra nhóm nghề phù hợp</string>
+    <string name="quiz_description">Dựa trên mô hình Holland để tìm ra ngành nghề phù hợp</string>
     <string name="quiz_start">Bắt đầu làm bài</string>
     
     <!-- Majors Fragment -->
     <string name="majors_title">Danh sách ngành nghề</string>
-    <string name="majors_search_hint">Tìm kiếm ngành nghề...</string>
+    <string name="majors_search_hint">Tìm kiếm ngành nghề</string>
     
     <!-- Schools Fragment -->
     <string name="schools_title">Danh sách trường học</string>
-    <string name="schools_search_hint">Tìm kiếm trường học...</string>
+    <string name="schools_search_hint">Tìm kiếm trường đại học</string>
 </resources>

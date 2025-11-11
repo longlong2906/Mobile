@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.adapters.HorizontalMajorAdapter;
 import com.example.myapplication.data.MajorData;
@@ -115,12 +115,16 @@ public class HomeFragment extends Fragment {
 
         cardMajors.setOnClickListener(v -> {
             // Navigate to Majors tab
-            Toast.makeText(getContext(), "Chức năng đang phát triển", Toast.LENGTH_SHORT).show();
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).switchToTab(R.id.navigation_majors);
+            }
         });
 
         cardSchools.setOnClickListener(v -> {
             // Navigate to Schools tab
-            Toast.makeText(getContext(), "Chức năng đang phát triển", Toast.LENGTH_SHORT).show();
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).switchToTab(R.id.navigation_schools);
+            }
         });
 
         cardChatbot.setOnClickListener(v -> {

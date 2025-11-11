@@ -21,7 +21,7 @@ public class ChatbotData {
 
         // Holland Test
         responses.put("holland|trắc nghiệm|test nghề", 
-            "Bài trắc nghiệm Holland giúp bạn khám phá nhóm nghề phù hợp với tính cách. " +
+            "Bài trắc nghiệm Holland giúp bạn khám phá ngành nghề phù hợp với tính cách. " +
             "Bạn có thể làm bài test tại tab Quiz. Bài test có 30 câu hỏi và mất khoảng 5-7 phút. 📝");
 
         responses.put("làm test|làm bài test|bắt đầu test", 

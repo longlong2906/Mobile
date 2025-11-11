@@ -69,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    // Public method to switch tabs from fragments
+    public void switchToTab(int tabId) {
+        bottomNavigation.setSelectedItemId(tabId);
+    }
+
     @Override
     public void onBackPressed() {
         // If not on home fragment, go to home

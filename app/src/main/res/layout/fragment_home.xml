@@ -115,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Khám phá nhóm nghề phù hợp với bạn"
+                    android:text="Khám phá ngành nghề phù hợp với bạn"
                     android:textSize="14sp"
                     android:textColor="#666666" />
 
@@ -248,7 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Chat tư vấn"
+                    android:text="Chatbot tư vấn"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="@color/black" />
