@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Đại học Bách Khoa TP.HCM - Màu xanh dương đậm -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="135"
+        android:startColor="#1e40af"
+        android:endColor="#3b82f6"
+        android:type="linear" />
+</shape>
+
+

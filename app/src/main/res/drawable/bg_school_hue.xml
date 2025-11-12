@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Đại học Huế - Màu tím hoàng gia -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="135"
+        android:startColor="#7c3aed"
+        android:endColor="#a78bfa"
+        android:type="linear" />
+</shape>
+
+

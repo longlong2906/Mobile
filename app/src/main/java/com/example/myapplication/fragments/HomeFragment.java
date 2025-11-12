@@ -69,6 +69,13 @@ public class HomeFragment extends Fragment {
     private void loadUserData() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
+            // Set default welcome message with email if name not loaded yet
+            String email = currentUser.getEmail();
+            if (email != null) {
+                String defaultName = email.split("@")[0];
+                tvWelcome.setText(getString(R.string.home_welcome, defaultName));
+            }
+            
             db.collection("users").document(currentUser.getUid())
                     .get()
                     .addOnSuccessListener(documentSnapshot -> {
@@ -87,7 +94,15 @@ public class HomeFragment extends Fragment {
                             } else {
                                 cardRecommendedMajors.setVisibility(View.GONE);
                             }
+                        } else {
+                            // Document doesn't exist, hide recommended majors
+                            cardRecommendedMajors.setVisibility(View.GONE);
                         }
+                    })
+                    .addOnFailureListener(e -> {
+                        // Failed to load user data, but still show the screen
+                        // Default welcome message is already set above
+                        cardRecommendedMajors.setVisibility(View.GONE);
                     });
         }
     }

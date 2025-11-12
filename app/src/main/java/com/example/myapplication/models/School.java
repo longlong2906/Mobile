@@ -15,6 +15,8 @@ public class School implements Serializable {
     private String email;
     private String website;
     private String description;
+    private int imageResId; // ID của ảnh trường trong drawable
+    private String imageUrl; // URL ảnh từ internet
     
     // Tab 1: Thông tin chung
     private List<String> images; // URLs of school images
@@ -192,6 +194,22 @@ public class School implements Serializable {
 
     public void setAdmissionMethods(List<String> admissionMethods) {
         this.admissionMethods = admissionMethods;
+    }
+
+    public int getImageResId() {
+        return imageResId;
+    }
+
+    public void setImageResId(int imageResId) {
+        this.imageResId = imageResId;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
 

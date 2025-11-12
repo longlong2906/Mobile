@@ -2,7 +2,10 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -30,6 +33,7 @@ import com.example.myapplication.models.User;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final String TAG = "LoginActivity";
     private static final int RC_SIGN_IN = 9001;
 
     private TextInputEditText etEmail, etPassword;
@@ -40,6 +44,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private GoogleSignInClient mGoogleSignInClient;
+    private Handler timeoutHandler = new Handler(Looper.getMainLooper());
+    private Runnable timeoutRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,10 +108,14 @@ public class LoginActivity extends AppCompatActivity {
 
         // Show progress
         showLoading(true);
+        
+        // Start timeout
+        startLoadingTimeout();
 
         // Sign in with Firebase
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
+                    cancelLoadingTimeout();
                     showLoading(false);
                     if (task.isSuccessful()) {
                         // Sign in success
@@ -115,17 +125,42 @@ public class LoginActivity extends AppCompatActivity {
                         navigateToMainActivity();
                     } else {
                         // Sign in failed
-                        Toast.makeText(LoginActivity.this, getString(R.string.error_login_failed),
+                        String errorMessage = "Đăng nhập thất bại. ";
+                        if (task.getException() != null) {
+                            errorMessage += task.getException().getMessage();
+                        }
+                        Toast.makeText(LoginActivity.this, errorMessage,
                                 Toast.LENGTH_LONG).show();
                     }
                 });
     }
 
     private void signInWithGoogle() {
+        Log.d(TAG, "Google Sign-In button clicked");
+        // Show loading while preparing Google Sign-In
+        showLoading(true);
+        
         // Sign out first to always show account picker
         mGoogleSignInClient.signOut().addOnCompleteListener(this, task -> {
-            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-            startActivityForResult(signInIntent, RC_SIGN_IN);
+            Log.d(TAG, "Google sign-out completed, showing picker");
+            // Hide loading before showing picker
+            showLoading(false);
+            
+            try {
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                if (signInIntent != null) {
+                    Log.d(TAG, "Starting Google Sign-In intent");
+                    startActivityForResult(signInIntent, RC_SIGN_IN);
+                } else {
+                    Log.e(TAG, "Google Sign-In intent is null");
+                    Toast.makeText(this, "Lỗi: Không thể khởi tạo đăng nhập Google", 
+                            Toast.LENGTH_LONG).show();
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Error starting Google Sign-In", e);
+                Toast.makeText(this, "Lỗi khi mở đăng nhập Google: " + e.getMessage(), 
+                        Toast.LENGTH_LONG).show();
+            }
         });
     }
 
@@ -163,29 +198,44 @@ public class LoginActivity extends AppCompatActivity {
 
     private void firebaseAuthWithGoogle(String idToken) {
         showLoading(true);
+        startLoadingTimeout();
+        
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
+                    cancelLoadingTimeout();
                     if (task.isSuccessful()) {
                         // Sign in success
                         FirebaseUser firebaseUser = mAuth.getCurrentUser();
                         if (firebaseUser != null) {
                             // Check if user exists in Firestore
                             checkAndCreateUserInFirestore(firebaseUser);
+                        } else {
+                            showLoading(false);
+                            Toast.makeText(LoginActivity.this, "Lỗi: Không thể lấy thông tin người dùng",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         // Sign in failed
                         showLoading(false);
-                        Toast.makeText(LoginActivity.this, getString(R.string.error_google_sign_in_failed),
-                                Toast.LENGTH_SHORT).show();
+                        String errorMessage = "Đăng nhập Google thất bại. ";
+                        if (task.getException() != null) {
+                            errorMessage += task.getException().getMessage();
+                        }
+                        Toast.makeText(LoginActivity.this, errorMessage,
+                                Toast.LENGTH_LONG).show();
                     }
                 });
     }
 
     private void checkAndCreateUserInFirestore(FirebaseUser firebaseUser) {
+        // Set timeout to prevent infinite loading (15 seconds)
+        startLoadingTimeout();
+        
         db.collection("users").document(firebaseUser.getUid())
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
+                    cancelLoadingTimeout();
                     if (!documentSnapshot.exists()) {
                         // User doesn't exist in Firestore, create new user
                         User newUser = new User(
@@ -193,17 +243,22 @@ public class LoginActivity extends AppCompatActivity {
                                 firebaseUser.getDisplayName(),
                                 firebaseUser.getEmail()
                         );
+                        
+                        // Set timeout for user creation
+                        startLoadingTimeout();
                         db.collection("users").document(firebaseUser.getUid())
                                 .set(newUser)
                                 .addOnSuccessListener(aVoid -> {
+                                    cancelLoadingTimeout();
                                     showLoading(false);
                                     Toast.makeText(LoginActivity.this, getString(R.string.success_login),
                                             Toast.LENGTH_SHORT).show();
                                     navigateToMainActivity();
                                 })
                                 .addOnFailureListener(e -> {
+                                    cancelLoadingTimeout();
                                     showLoading(false);
-                                    Toast.makeText(LoginActivity.this, getString(R.string.error_login_failed),
+                                    Toast.makeText(LoginActivity.this, "Lỗi khi tạo tài khoản. Vui lòng thử lại.",
                                             Toast.LENGTH_SHORT).show();
                                 });
                     } else {
@@ -215,10 +270,32 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(e -> {
+                    cancelLoadingTimeout();
                     showLoading(false);
-                    Toast.makeText(LoginActivity.this, getString(R.string.error_login_failed),
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Lỗi kết nối. Vui lòng kiểm tra internet và thử lại.",
+                            Toast.LENGTH_LONG).show();
                 });
+    }
+    
+    private void startLoadingTimeout() {
+        // Cancel any existing timeout
+        cancelLoadingTimeout();
+        
+        // Set new timeout (15 seconds)
+        timeoutRunnable = () -> {
+            showLoading(false);
+            Toast.makeText(LoginActivity.this, 
+                    "Kết nối quá lâu. Vui lòng kiểm tra internet và thử lại.", 
+                    Toast.LENGTH_LONG).show();
+        };
+        timeoutHandler.postDelayed(timeoutRunnable, 15000); // 15 seconds
+    }
+    
+    private void cancelLoadingTimeout() {
+        if (timeoutRunnable != null) {
+            timeoutHandler.removeCallbacks(timeoutRunnable);
+            timeoutRunnable = null;
+        }
     }
 
     private boolean validateInput(String email, String password) {
@@ -247,10 +324,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void navigateToMainActivity() {
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
+        Log.d(TAG, "Navigating to MainActivity");
+        try {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+            Log.d(TAG, "MainActivity started successfully");
+        } catch (Exception e) {
+            Log.e(TAG, "Error navigating to MainActivity", e);
+            Toast.makeText(this, "Lỗi: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -261,6 +345,13 @@ public class LoginActivity extends AppCompatActivity {
         if (currentUser != null) {
             navigateToMainActivity();
         }
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Clean up timeout handler
+        cancelLoadingTimeout();
     }
 }
 

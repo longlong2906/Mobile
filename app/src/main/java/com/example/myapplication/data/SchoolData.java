@@ -1,5 +1,6 @@
 package com.example.myapplication.data;
 
+import com.example.myapplication.R;
 import com.example.myapplication.models.School;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class SchoolData {
         
         // 1. ĐH Bách Khoa Hà Nội
         School bkhn = new School("1", "Đại học Bách Khoa Hà Nội", "ĐHBK HN", "Bắc", "Công lập");
+//        bkhn.setImageResId(R.drawable.bg_school_bkhn);
+        bkhn.setImageUrl("https://cdn-media.sforum.vn/storage/app/media/giakhanh/h%E1%BB%8Dc%20ph%C3%AD%20%C4%91%E1%BA%A1i%20h%E1%BB%8Dc%20b%C3%A1ch%20khoa%20h%C3%A0%20n%E1%BB%99i/hoc-phi-dai-hoc-bach-khoa-ha-noi-thumbnail.jpg");
         bkhn.setAddress("Số 1 Đại Cồ Việt, Hai Bà Trưng, Hà Nội");
         bkhn.setPhone("024 3869 4242");
         bkhn.setEmail("dhbk@hust.edu.vn");
@@ -47,6 +50,8 @@ public class SchoolData {
 
         // 2. ĐH Quốc gia Hà Nội
         School vnu = new School("2", "Đại học Quốc gia Hà Nội", "ĐHQG HN", "Bắc", "Công lập");
+        vnu.setImageResId(R.drawable.bg_school_vnu);
+        vnu.setImageUrl("https://bcp.cdnchinhphu.vn/334894974524682240/2025/8/22/2222222222222-17528347776482000060863-17558563734891201936705.jpg");
         vnu.setAddress("144 Xuân Thủy, Cầu Giấy, Hà Nội");
         vnu.setPhone("024 3754 7506");
         vnu.setEmail("dhqghn@vnu.edu.vn");
@@ -75,6 +80,8 @@ public class SchoolData {
 
         // 3. ĐH FPT
         School fpt = new School("3", "Đại học FPT", "ĐH FPT", "Bắc", "Dân lập");
+//        fpt.setImageResId(R.drawable.bg_school_fpt);
+        fpt.setImageUrl("https://ptehelper.com.au/wp-content/uploads/2023/07/tieng-anh-dau-vao-dai-hoc-fpt.webp");
         fpt.setAddress("Khu Công nghệ cao Hòa Lạc, Hà Nội");
         fpt.setPhone("024 7300 5588");
         fpt.setEmail("admissions@fpt.edu.vn");
@@ -106,6 +113,8 @@ public class SchoolData {
 
         // 4. ĐH Đà Nẵng
         School dnu = new School("4", "Đại học Đà Nẵng", "ĐH Đà Nẵng", "Trung", "Công lập");
+        dnu.setImageResId(R.drawable.bg_school_dnu);
+        dnu.setImageUrl("https://ud.edu.vn/uploads/images/ud-banner.jpg");
         dnu.setAddress("41 Lê Duẩn, Hải Châu, Đà Nẵng");
         dnu.setPhone("0236 3822 041");
         dnu.setEmail("info@ud.edu.vn");
@@ -134,6 +143,8 @@ public class SchoolData {
 
         // 5. ĐH Huế
         School hue = new School("5", "Đại học Huế", "ĐH Huế", "Trung", "Công lập");
+        hue.setImageResId(R.drawable.bg_school_hue);
+        hue.setImageUrl("https://hueuni.edu.vn/portal/vi/data/img/logo_dhh.jpg");
         hue.setAddress("03 Lê Lợi, Thành phố Huế");
         hue.setPhone("0234 3822 044");
         hue.setEmail("dhh@hueuni.edu.vn");
@@ -164,6 +175,8 @@ public class SchoolData {
 
         // 6. ĐH Bách Khoa TP.HCM
         School hcmut = new School("6", "Đại học Bách Khoa TP.HCM", "ĐHBK HCM", "Nam", "Công lập");
+        hcmut.setImageResId(R.drawable.bg_school_hcmut);
+        hcmut.setImageUrl("https://hcmut.edu.vn/img/nhanDienThuongHieu/Banner_HCMUT.png");
         hcmut.setAddress("268 Lý Thường Kiệt, Quận 10, TP.HCM");
         hcmut.setPhone("028 3865 4633");
         hcmut.setEmail("ttdt@hcmut.edu.vn");
@@ -192,6 +205,8 @@ public class SchoolData {
 
         // 7. ĐH Kinh tế TP.HCM
         School ueh = new School("7", "Đại học Kinh tế TP.HCM", "UEH", "Nam", "Công lập");
+        ueh.setImageResId(R.drawable.bg_school_ueh);
+        ueh.setImageUrl("https://ueh.edu.vn/images/logo/logo-ueh-1.jpg");
         ueh.setAddress("59C Nguyễn Đình Chiểu, Quận 3, TP.HCM");
         ueh.setPhone("028 3829 3082");
         ueh.setEmail("info@ueh.edu.vn");
@@ -220,6 +235,8 @@ public class SchoolData {
 
         // 8. ĐH RMIT
         School rmit = new School("8", "Đại học RMIT Việt Nam", "RMIT", "Nam", "Quốc tế");
+        rmit.setImageResId(R.drawable.bg_school_rmit);
+        rmit.setImageUrl("https://www.rmit.edu.vn/sites/default/files/2021-11/RMIT-Campus-Hero.jpg");
         rmit.setAddress("702 Nguyễn Văn Linh, Quận 7, TP.HCM");
         rmit.setPhone("028 3776 1300");
         rmit.setEmail("study@rmit.edu.vn");
@@ -248,6 +265,8 @@ public class SchoolData {
 
         // 9. ĐH Y Dược TP.HCM
         School yduoc = new School("9", "Đại học Y Dược TP.HCM", "ĐH Y Dược", "Nam", "Công lập");
+        yduoc.setImageResId(R.drawable.bg_school_yduoc);
+        yduoc.setImageUrl("https://yds.edu.vn/uploads/images/banner-yds.jpg");
         yduoc.setAddress("217 Hồng Bàng, Quận 5, TP.HCM");
         yduoc.setPhone("028 3855 4269");
         yduoc.setEmail("dhydtp@yds.edu.vn");
@@ -276,6 +295,8 @@ public class SchoolData {
 
         // 10. ĐH Tôn Đức Thắng
         School tdtu = new School("10", "Đại học Tôn Đức Thắng", "TDTU", "Nam", "Công lập");
+        tdtu.setImageResId(R.drawable.bg_school_tdtu);
+        tdtu.setImageUrl("https://www.tdtu.edu.vn/sites/www/files/styles/large/public/banner_01.jpg");
         tdtu.setAddress("19 Nguyễn Hữu Thọ, Quận 7, TP.HCM");
         tdtu.setPhone("028 3775 5055");
         tdtu.setEmail("tuyensinh@tdtu.edu.vn");

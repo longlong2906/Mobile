@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Đại học Đà Nẵng - Màu xanh lá -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="135"
+        android:startColor="#059669"
+        android:endColor="#10b981"
+        android:type="linear" />
+</shape>
+
+

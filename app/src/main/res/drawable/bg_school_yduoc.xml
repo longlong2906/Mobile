@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Đại học Y Dược TP.HCM - Màu xanh medical -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="135"
+        android:startColor="#0891b2"
+        android:endColor="#06b6d4"
+        android:type="linear" />
+</shape>
+
+

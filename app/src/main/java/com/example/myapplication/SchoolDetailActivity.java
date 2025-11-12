@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,8 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.myapplication.fragments.SchoolAdmissionFragment;
 import com.example.myapplication.fragments.SchoolInfoFragment;
 import com.example.myapplication.models.School;
@@ -20,6 +23,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class SchoolDetailActivity extends AppCompatActivity {
 
     private School school;
+    private ImageView ivSchoolImage;
     private TextView tvSchoolName;
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
@@ -43,6 +47,7 @@ public class SchoolDetailActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        ivSchoolImage = findViewById(R.id.ivSchoolImage);
         tvSchoolName = findViewById(R.id.tvSchoolName);
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
@@ -59,6 +64,28 @@ public class SchoolDetailActivity extends AppCompatActivity {
 
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
         tvSchoolName.setText(school.getName());
+        
+        // Load school image
+        loadSchoolImage();
+    }
+
+    private void loadSchoolImage() {
+        // Ưu tiên load ảnh từ URL nếu có
+        if (school.getImageUrl() != null && !school.getImageUrl().isEmpty()) {
+            Glide.with(this)
+                    .load(school.getImageUrl())
+                    .placeholder(R.drawable.bg_school_default) // Hiển thị placeholder khi đang load
+                    .error(school.getImageResId() != 0 ? school.getImageResId() : R.drawable.bg_school_default) // Nếu lỗi, hiển thị ảnh backup
+                    .diskCacheStrategy(DiskCacheStrategy.ALL) // Cache ảnh để load nhanh lần sau
+                    .centerCrop()
+                    .into(ivSchoolImage);
+        } else if (school.getImageResId() != 0) {
+            // Nếu không có URL, dùng ảnh local
+            ivSchoolImage.setImageResource(school.getImageResId());
+        } else {
+            // Default placeholder
+            ivSchoolImage.setImageResource(R.drawable.bg_school_default);
+        }
     }
 
     private void setupViewPager() {

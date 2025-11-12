@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,24 +18,37 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     private BottomNavigationView bottomNavigation;
     private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        Log.d(TAG, "onCreate started");
+        
+        try {
+            setContentView(R.layout.activity_main);
+            Log.d(TAG, "Layout inflated successfully");
 
-        // Initialize views
-        bottomNavigation = findViewById(R.id.bottomNavigation);
-        fragmentManager = getSupportFragmentManager();
+            // Initialize views
+            bottomNavigation = findViewById(R.id.bottomNavigation);
+            fragmentManager = getSupportFragmentManager();
+            Log.d(TAG, "Views initialized");
 
-        // Set up bottom navigation
-        setupBottomNavigation();
+            // Set up bottom navigation
+            setupBottomNavigation();
+            Log.d(TAG, "Bottom navigation setup complete");
 
-        // Load default fragment (Home)
-        if (savedInstanceState == null) {
-            loadFragment(new HomeFragment());
+            // Load default fragment (Home)
+            if (savedInstanceState == null) {
+                Log.d(TAG, "Loading HomeFragment");
+                loadFragment(new HomeFragment());
+            }
+            
+            Log.d(TAG, "onCreate completed successfully");
+        } catch (Exception e) {
+            Log.e(TAG, "Error in onCreate", e);
         }
     }
 
@@ -64,9 +78,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadFragment(Fragment fragment) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragmentContainer, fragment);
-        transaction.commit();
+        try {
+            Log.d(TAG, "Loading fragment: " + fragment.getClass().getSimpleName());
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.fragmentContainer, fragment);
+            transaction.commit();
+            Log.d(TAG, "Fragment loaded successfully");
+        } catch (Exception e) {
+            Log.e(TAG, "Error loading fragment", e);
+        }
     }
 
     // Public method to switch tabs from fragments
