@@ -61,6 +61,13 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.ViewHolder
         return schoolsFiltered.size();
     }
 
+    // Update data method
+    public void updateData(List<School> newSchools) {
+        this.schools = newSchools;
+        this.schoolsFiltered = new ArrayList<>(newSchools);
+        notifyDataSetChanged();
+    }
+    
     // Filter method
     public void filter(String query, String region, String type) {
         schoolsFiltered.clear();

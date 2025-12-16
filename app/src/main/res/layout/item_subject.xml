@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Left border -->
+        <View
+            android:id="@+id/borderView"
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="#42A5F5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Credits badge -->
+            <TextView
+                android:id="@+id/tvCredits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 tín chỉ"
+                android:textSize="12sp"
+                android:textColor="#E91E63"
+                android:background="#FFEBEE"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Subject name -->
+            <TextView
+                android:id="@+id/tvSubjectName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Triết học Mác-Lênin"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#D32F2F" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+
+
+
+

@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.adapters.HorizontalMajorAdapter;
-import com.example.myapplication.data.MajorData;
 import com.example.myapplication.models.Major;
+import com.example.myapplication.repositories.MajorRepository;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -108,17 +108,27 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadRecommendedMajors(String hollandType, String hollandCode) {
-        List<Major> recommendedMajors = MajorData.getMajorsByHollandType(hollandCode);
-        
-        if (recommendedMajors != null && !recommendedMajors.isEmpty()) {
-            cardRecommendedMajors.setVisibility(View.VISIBLE);
-            tvHollandResult.setText("Nhóm: " + hollandType);
+        // Lấy dữ liệu từ Firebase
+        MajorRepository.getInstance().getMajorsByHollandType(hollandCode, new MajorRepository.OnMajorsLoadedListener() {
+            @Override
+            public void onSuccess(List<Major> recommendedMajors) {
+                if (recommendedMajors != null && !recommendedMajors.isEmpty()) {
+                    cardRecommendedMajors.setVisibility(View.VISIBLE);
+                    tvHollandResult.setText("Nhóm: " + hollandType);
+                    
+                    HorizontalMajorAdapter adapter = new HorizontalMajorAdapter(getContext(), recommendedMajors);
+                    rvRecommendedMajors.setAdapter(adapter);
+                } else {
+                    cardRecommendedMajors.setVisibility(View.GONE);
+                }
+            }
             
-            HorizontalMajorAdapter adapter = new HorizontalMajorAdapter(getContext(), recommendedMajors);
-            rvRecommendedMajors.setAdapter(adapter);
-        } else {
-            cardRecommendedMajors.setVisibility(View.GONE);
-        }
+            @Override
+            public void onFailure(String error) {
+                // Ẩn card nếu load thất bại
+                cardRecommendedMajors.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void setClickListeners() {

@@ -21,8 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.adapters.RecommendedMajorAdapter;
-import com.example.myapplication.data.MajorData;
 import com.example.myapplication.models.Major;
+import com.example.myapplication.repositories.MajorRepository;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
@@ -121,18 +121,33 @@ public class ProfileFragment extends Fragment {
     }
 
     private void loadRecommendedMajors(String hollandCode) {
-        List<Major> recommendedMajors = MajorData.getMajorsByHollandType(hollandCode);
-        
-        if (recommendedMajors != null && !recommendedMajors.isEmpty()) {
-            tvRecommendedTitle.setVisibility(View.VISIBLE);
-            rvRecommendedMajors.setVisibility(View.VISIBLE);
-            
-            RecommendedMajorAdapter adapter = new RecommendedMajorAdapter(getContext(), recommendedMajors);
-            rvRecommendedMajors.setAdapter(adapter);
-        } else {
-            tvRecommendedTitle.setVisibility(View.GONE);
-            rvRecommendedMajors.setVisibility(View.GONE);
-        }
+        // Lấy dữ liệu từ Firebase thông qua MajorRepository
+        MajorRepository.getInstance().getMajorsByHollandType(hollandCode, new MajorRepository.OnMajorsLoadedListener() {
+            @Override
+            public void onSuccess(List<Major> majors) {
+                if (getContext() == null) return; // Fragment đã bị destroy
+                
+                if (majors != null && !majors.isEmpty()) {
+                    tvRecommendedTitle.setVisibility(View.VISIBLE);
+                    rvRecommendedMajors.setVisibility(View.VISIBLE);
+                    
+                    RecommendedMajorAdapter adapter = new RecommendedMajorAdapter(getContext(), majors);
+                    rvRecommendedMajors.setAdapter(adapter);
+                } else {
+                    tvRecommendedTitle.setVisibility(View.GONE);
+                    rvRecommendedMajors.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(String error) {
+                if (getContext() == null) return;
+                
+                Toast.makeText(getContext(), "Không thể tải ngành đề xuất: " + error, Toast.LENGTH_SHORT).show();
+                tvRecommendedTitle.setVisibility(View.GONE);
+                rvRecommendedMajors.setVisibility(View.GONE);
+            }
+        });
     }
 
     /**

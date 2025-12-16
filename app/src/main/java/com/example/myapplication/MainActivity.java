@@ -15,6 +15,9 @@ import com.example.myapplication.fragments.ProfileFragment;
 import com.example.myapplication.fragments.QuizFragment;
 import com.example.myapplication.fragments.SchoolsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.myapplication.utils.FirebaseDataUploader;
+import com.example.myapplication.utils.FirebaseSchoolUploader;
+import com.example.myapplication.utils.FirebaseSchoolMajorUploader;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +42,29 @@ public class MainActivity extends AppCompatActivity {
             // Set up bottom navigation
             setupBottomNavigation();
             Log.d(TAG, "Bottom navigation setup complete");
+            
+            // ========== UPLOAD DỮ LIỆU LÊN FIREBASE (CHỈ CHẠY 1 LẦN) ==========
+            // 
+            // HƯỚNG DẪN SỬ DỤNG:
+            // 1. Uncomment dòng upload tương ứng với dữ liệu bạn muốn upload
+            // 2. Build và chạy app
+            // 3. Xem Logcat để theo dõi quá trình upload
+            // 4. Sau khi upload thành công, COMMENT LẠI để tránh upload lại
+            // 
+            
+            // Upload MAJORS (Ngành học)
+            // Uncomment dòng dưới nếu bạn đã thêm/sửa dữ liệu trong MajorData.java
+            // FirebaseDataUploader.uploadMajorsToFirebase(this);
+            
+            // Upload SCHOOLS (Thông tin trường)
+            // Uncomment dòng dưới nếu bạn đã thêm/sửa dữ liệu Schools trong SchoolData.java
+            // FirebaseSchoolUploader.uploadSchoolsToFirebase(this);
+            
+            // Upload SCHOOL MAJORS (Ngành đào tạo của trường + Chuyên ngành + Môn học)
+            // Uncomment dòng dưới nếu bạn đã thêm/sửa dữ liệu SchoolMajors trong SchoolData.java
+//             FirebaseSchoolMajorUploader.uploadSchoolMajorsToFirebase(this);
+            
+            // ==================================================================
 
             // Load default fragment (Home)
             if (savedInstanceState == null) {

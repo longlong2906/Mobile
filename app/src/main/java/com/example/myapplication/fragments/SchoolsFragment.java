@@ -16,13 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapters.SchoolAdapter;
-import com.example.myapplication.data.SchoolData;
 import com.example.myapplication.models.School;
+import com.example.myapplication.repositories.SchoolRepository;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SchoolsFragment extends Fragment {
 
@@ -62,15 +64,35 @@ public class SchoolsFragment extends Fragment {
     }
 
     private void loadSchools() {
-        schools = SchoolData.getSampleSchools();
+        // Khởi tạo danh sách rỗng trước
+        schools = new ArrayList<>();
         schoolAdapter = new SchoolAdapter(getContext(), schools);
         rvSchools.setAdapter(schoolAdapter);
-        updateEmptyState();
+        
+        // Lấy dữ liệu từ Firebase
+        SchoolRepository.getInstance().getAllSchools(new SchoolRepository.OnSchoolsLoadedListener() {
+            @Override
+            public void onSuccess(List<School> loadedSchools) {
+                schools = loadedSchools;
+                
+                // Cập nhật adapter
+                if (schoolAdapter != null) {
+                    schoolAdapter.updateData(schools);
+                    updateEmptyState();
+                }
+            }
+            
+            @Override
+            public void onFailure(String error) {
+                // Giữ danh sách rỗng nếu load thất bại
+                updateEmptyState();
+            }
+        });
     }
 
     private void setupFilters() {
-        // Setup Region chips
-        List<String> regions = SchoolData.getRegions();
+        // Setup Region chips - danh sách cố định
+        List<String> regions = Arrays.asList("Tất cả", "Bắc", "Trung", "Nam");
         for (int i = 0; i < regions.size(); i++) {
             String region = regions.get(i);
             Chip chip = new Chip(getContext());
@@ -84,8 +106,8 @@ public class SchoolsFragment extends Fragment {
             chipGroupRegion.addView(chip);
         }
 
-        // Setup Type chips
-        List<String> types = SchoolData.getTypes();
+        // Setup Type chips - danh sách cố định
+        List<String> types = Arrays.asList("Tất cả", "Công lập", "Dân lập", "Quốc tế");
         for (int i = 0; i < types.size(); i++) {
             String type = types.get(i);
             Chip chip = new Chip(getContext());

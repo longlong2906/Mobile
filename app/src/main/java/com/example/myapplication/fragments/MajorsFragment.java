@@ -15,13 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapters.MajorAdapter;
-import com.example.myapplication.data.MajorData;
 import com.example.myapplication.models.Major;
+import com.example.myapplication.repositories.MajorRepository;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MajorsFragment extends Fragment {
 
@@ -57,7 +59,26 @@ public class MajorsFragment extends Fragment {
     }
 
     private void loadData() {
-        majors = MajorData.getSampleMajors();
+        // Khởi tạo danh sách rỗng trước
+        majors = new ArrayList<>();
+        
+        // Lấy dữ liệu từ Firebase
+        MajorRepository.getInstance().getAllMajors(new MajorRepository.OnMajorsLoadedListener() {
+            @Override
+            public void onSuccess(List<Major> loadedMajors) {
+                majors = loadedMajors;
+                
+                // Cập nhật adapter
+                if (adapter != null) {
+                    adapter.updateData(majors);
+                }
+            }
+            
+            @Override
+            public void onFailure(String error) {
+                // Giữ danh sách rỗng nếu load thất bại
+            }
+        });
     }
 
     private void setupRecyclerView() {
@@ -67,7 +88,16 @@ public class MajorsFragment extends Fragment {
     }
 
     private void setupCategories() {
-        List<String> categories = MajorData.getCategories();
+        // Danh sách categories cố định
+        List<String> categories = Arrays.asList(
+            "Tất cả",
+            "Công nghệ",
+            "Kinh tế",
+            "Nghệ thuật",
+            "Y dược",
+            "Giáo dục",
+            "Kỹ thuật"
+        );
         
         for (int i = 0; i < categories.size(); i++) {
             String category = categories.get(i);

@@ -10,10 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.adapters.RecommendedMajorAdapter;
-import com.example.myapplication.data.MajorData;
-import com.example.myapplication.data.QuestionData;
 import com.example.myapplication.models.Major;
 import com.example.myapplication.models.Question;
+import com.example.myapplication.repositories.MajorRepository;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -52,7 +52,6 @@ public class ResultActivity extends AppCompatActivity {
 
         initViews();
         displayResults();
-        saveResultToFirestore();
         setClickListeners();
     }
 
@@ -76,15 +75,29 @@ public class ResultActivity extends AppCompatActivity {
         Question.HollandType type = Question.HollandType.valueOf(hollandType);
         String hollandCode = type.getCode(); // Get code (R, I, A, S, E, C)
         
-        List<Major> recommendedMajors = MajorData.getMajorsByHollandType(hollandCode);
-
-        // Display majors in RecyclerView with detailed cards
-        RecommendedMajorAdapter adapter = new RecommendedMajorAdapter(this, recommendedMajors);
-        rvMajors.setLayoutManager(new LinearLayoutManager(this));
-        rvMajors.setAdapter(adapter);
+        // Lấy dữ liệu từ Firebase
+        MajorRepository.getInstance().getMajorsByHollandType(hollandCode, new MajorRepository.OnMajorsLoadedListener() {
+            @Override
+            public void onSuccess(List<Major> recommendedMajors) {
+                // Display majors in RecyclerView with detailed cards
+                RecommendedMajorAdapter adapter = new RecommendedMajorAdapter(ResultActivity.this, recommendedMajors);
+                rvMajors.setLayoutManager(new LinearLayoutManager(ResultActivity.this));
+                rvMajors.setAdapter(adapter);
+                
+                // Save result sau khi đã load được majors
+                saveResultToFirestore(recommendedMajors);
+            }
+            
+            @Override
+            public void onFailure(String error) {
+                Toast.makeText(ResultActivity.this, "Không thể tải ngành gợi ý: " + error, Toast.LENGTH_SHORT).show();
+                // Vẫn save result nhưng không có majors
+                saveResultToFirestore(new ArrayList<>());
+            }
+        });
     }
 
-    private void saveResultToFirestore() {
+    private void saveResultToFirestore(List<Major> recommendedMajors) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             return;
@@ -93,9 +106,6 @@ public class ResultActivity extends AppCompatActivity {
         // Get Holland type info
         Question.HollandType type = Question.HollandType.valueOf(hollandType);
         String hollandCode = type.getCode();
-        
-        // Get recommended majors
-        List<Major> recommendedMajors = MajorData.getMajorsByHollandType(hollandCode);
         
         // Convert to major names list
         String[] majorNames = new String[recommendedMajors.size()];
