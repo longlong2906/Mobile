@@ -9,11 +9,14 @@ public class Subject implements Serializable {
     private String name; // Tên môn học
     private int credits; // Số tín chỉ
     private int semester; // Học kỳ
-    private String type; // Loại môn: "BAT_BUOC_CHUNG", "BAT_BUOC_NGANH", "CO_SO_NGANH", "CHUYEN_NGANH", "THUC_TAP", "GDCN", "LUAN_VAN"
-    
+    private String type; // Loại môn: "BAT_BUOC_CHUNG", "BAT_BUOC_NGANH", "CO_SO_NGANH", "CHUYEN_NGANH",
+                         // "THUC_TAP", "GDCN", "LUAN_VAN"
+
+    private String code; // Mã học phần
+
     public Subject() {
     }
-    
+
     public Subject(String name, int credits, int semester, String type) {
         this.name = name;
         this.credits = credits;
@@ -21,7 +24,32 @@ public class Subject implements Serializable {
         this.type = type;
     }
 
+    // Constructor mới cho dữ liệu Bách Khoa (có mã học phần)
+    public Subject(String code, String name, int credits) {
+        this.code = code;
+        this.name = name;
+        this.credits = credits;
+        this.semester = 1; // Mặc định
+        this.type = "CHUYEN_NGANH"; // Mặc định
+    }
+
+    public Subject(String code, String name, int credits, int semester) {
+        this.code = code;
+        this.name = name;
+        this.credits = credits;
+        this.semester = semester;
+        this.type = "CHUYEN_NGANH"; // Mặc định loại chuyên ngành hoặc tự động xử lý sau
+    }
+
     // Getters and Setters
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public String getName() {
         return name;
     }
@@ -53,7 +81,7 @@ public class Subject implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
-    
+
     // Get color based on type
     public int getBorderColor() {
         switch (type) {
@@ -76,14 +104,3 @@ public class Subject implements Serializable {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-

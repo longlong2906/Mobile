@@ -108,7 +108,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadRecommendedMajors(String hollandType, String hollandCode) {
-        // Lấy dữ liệu từ Firebase
+
         MajorRepository.getInstance().getMajorsByHollandType(hollandCode, new MajorRepository.OnMajorsLoadedListener() {
             @Override
             public void onSuccess(List<Major> recommendedMajors) {

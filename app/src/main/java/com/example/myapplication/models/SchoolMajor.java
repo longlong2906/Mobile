@@ -16,26 +16,26 @@ public class SchoolMajor implements Serializable {
     private String careerProspects; // Nghề nghiệp sau khi tốt nghiệp
     private String tuitionFee; // Học phí
     private double benchmarkScore; // Điểm chuẩn
-    private int duration; // Thời gian đào tạo (năm)
+    private double duration; // Thời gian đào tạo (năm)
     private String degree; // Bằng cấp (Cử nhân, Kỹ sư, ...)
-    
+
     // Thông tin chi tiết cho Tổng quan
     private int credits; // Khối lượng chương trình (tín chỉ)
     private String admissionQuota; // Chỉ tiêu tuyển sinh theo năm
     private String benchmarkScoreHistory; // Điểm trung tuyển theo năm
     private String admissionBlocks; // Tổ hợp xét tuyển
-    
+
     // Chương trình đào tạo chi tiết
     private String curriculumDetails; // Chi tiết chương trình theo học kỳ
     private List<Subject> subjects; // Danh sách môn học chi tiết
     private List<Specialization> specializations; // Danh sách các chuyên ngành
-    
+
     // Nghề nghiệp chi tiết
     private String careerDepartments; // Các Cục, Vụ
     private String careerInstitutes; // Các Viện, Trung tâm
     private String careerCorporations; // Các Tập đoàn, Tổng công ty
     private String careerDivisions; // Các phòng chức năng
-    
+
     // Chuẩn đầu ra
     private List<String> learningOutcomesKnowledge; // Về Kiến thức
     private List<String> learningOutcomesSkills; // Về Kỹ năng
@@ -127,11 +127,11 @@ public class SchoolMajor implements Serializable {
         this.benchmarkScore = benchmarkScore;
     }
 
-    public int getDuration() {
+    public double getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(double duration) {
         this.duration = duration;
     }
 
@@ -287,4 +287,3 @@ public class SchoolMajor implements Serializable {
         this.learningOutcomesCareers = learningOutcomesCareers;
     }
 }
-

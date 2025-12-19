@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             
             // Upload SCHOOLS (Thông tin trường)
             // Uncomment dòng dưới nếu bạn đã thêm/sửa dữ liệu Schools trong SchoolData.java
-            // FirebaseSchoolUploader.uploadSchoolsToFirebase(this);
+//             FirebaseSchoolUploader.uploadSchoolsToFirebase(this);
             
             // Upload SCHOOL MAJORS (Ngành đào tạo của trường + Chuyên ngành + Môn học)
             // Uncomment dòng dưới nếu bạn đã thêm/sửa dữ liệu SchoolMajors trong SchoolData.java

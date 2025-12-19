@@ -48,7 +48,7 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.ViewHolder
         holder.tvDescription.setText(school.getDescription());
         holder.tvAddress.setText(school.getAddress());
 
-        // Click listener
+
         holder.cardSchool.setOnClickListener(v -> {
             Intent intent = new Intent(context, SchoolDetailActivity.class);
             intent.putExtra("school", school);

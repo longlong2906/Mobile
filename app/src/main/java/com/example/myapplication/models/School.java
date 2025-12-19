@@ -8,8 +8,8 @@ public class School implements Serializable {
     private String id;
     private String name;
     private String shortName;
-    private String region; // "Bắc", "Trung", "Nam"
-    private String type; // "Công lập", "Dân lập", "Quốc tế"
+    private String region;
+    private String type;
     private String address;
     private String phone;
     private String email;
@@ -18,20 +18,20 @@ public class School implements Serializable {
     private int imageResId; // ID của ảnh trường trong drawable
     private String imageUrl; // URL ảnh từ internet
     
-    // Tab 1: Thông tin chung
+
     private List<String> images; // URLs of school images
-    private List<String> majors; // Các ngành đào tạo
+    private List<String> majors;
     private String tuitionRange; // Học phí
     private List<String> facilities; // Cơ sở vật chất
-    private List<String> clubs; // Các CLB
+    private List<String> clubs;
     
-    // Tab 2: Thông tin tuyển sinh
+
     private String admissionPolicy; // Quy chế tuyển sinh
     private Map<String, Double> benchmarkScores; // Điểm chuẩn theo ngành (năm gần nhất)
     private String admissionQuota; // Chỉ tiêu tuyển sinh
     private List<String> admissionMethods; // Phương thức tuyển sinh
 
-    // Constructor mặc định cho Firestore
+
     public School() {
     }
 

@@ -52,11 +52,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Initialize Firebase Auth và Firestore
+
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // Configure Google Sign In
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -64,10 +64,10 @@ public class LoginActivity extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        // Initialize Views
+
         initViews();
 
-        // Set Click Listeners
+
         setClickListeners();
     }
 
@@ -101,30 +101,30 @@ public class LoginActivity extends AppCompatActivity {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
-        // Validate input
+
         if (!validateInput(email, password)) {
             return;
         }
 
-        // Show progress
+
         showLoading(true);
         
-        // Start timeout
+
         startLoadingTimeout();
 
-        // Sign in with Firebase
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     cancelLoadingTimeout();
                     showLoading(false);
                     if (task.isSuccessful()) {
-                        // Sign in success
+
                         FirebaseUser user = mAuth.getCurrentUser();
                         Toast.makeText(LoginActivity.this, getString(R.string.success_login),
                                 Toast.LENGTH_SHORT).show();
                         navigateToMainActivity();
                     } else {
-                        // Sign in failed
+
                         String errorMessage = "Đăng nhập thất bại. ";
                         if (task.getException() != null) {
                             errorMessage += task.getException().getMessage();
@@ -137,13 +137,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private void signInWithGoogle() {
         Log.d(TAG, "Google Sign-In button clicked");
-        // Show loading while preparing Google Sign-In
+
         showLoading(true);
         
-        // Sign out first to always show account picker
+
         mGoogleSignInClient.signOut().addOnCompleteListener(this, task -> {
             Log.d(TAG, "Google sign-out completed, showing picker");
-            // Hide loading before showing picker
+
             showLoading(false);
             
             try {
@@ -205,10 +205,10 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     cancelLoadingTimeout();
                     if (task.isSuccessful()) {
-                        // Sign in success
+
                         FirebaseUser firebaseUser = mAuth.getCurrentUser();
                         if (firebaseUser != null) {
-                            // Check if user exists in Firestore
+
                             checkAndCreateUserInFirestore(firebaseUser);
                         } else {
                             showLoading(false);
@@ -278,7 +278,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     
     private void startLoadingTimeout() {
-        // Cancel any existing timeout
+
         cancelLoadingTimeout();
         
         // Set new timeout (15 seconds)
@@ -350,7 +350,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Clean up timeout handler
         cancelLoadingTimeout();
     }
 }
